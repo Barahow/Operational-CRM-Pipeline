@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Cleaned customer master."
+    columns:
+      - name: customer_id
+        description: "Primary key for customer"
+        tests:
+          - not_null
+          - unique
+      - name: customer_email
+        description: "Customer email address"
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_products
+    description: "Product dimension."
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        tests:
+          - not_null
+
+  - name: dim_tickets
+    description: "Support ticket dimension (cleaned)."
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_sales_transformed
+    description: "Sales transactions (transformed)."
+    columns:
+      - name: sale_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_id
+
+  - name: fact_support_ticket_transformed
+    description: "Support tickets fact (transformed)."
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_email
+        tests:
+          - not_null
