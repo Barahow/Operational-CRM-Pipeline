@@ -19,14 +19,17 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dbt for BigQuery
-        run: pip install dbt-bigquery sqlfluff
+      - name: Install dbt for BigQuery and SQLFluff
+        run: |
+          pip install dbt-bigquery
+          pip install sqlfluff
+          pip install sqlfluff-templater-dbt
 
       - name: Install dbt deps
         run: dbt deps
 
       - name: Lint SQL
-        run: sqlfluff lint crm_warehouse/models/
+        run: python -m sqlfluff lint crm_warehouse/models/
 
       - name: Run dbt build
         run: dbt build --fail-fast --select state:modified+
