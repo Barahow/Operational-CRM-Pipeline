@@ -28,7 +28,24 @@ Primary outcome: deployable architecture that supports incremental loads, schema
 
 ## Architecture Overview
 
-![Pipeline Architecture](screenshots/pipeline_architecture.png)  
+```
+Data sources (Supabase, transactional feeds, marketing tools)
+        |
+        v
+Airbyte (ingest connectors, incremental replication)
+        |
+        v
+BigQuery raw dataset  - raw ingestion tables (append only)
+        |
+        v
+dbt - staging, transformation, marts, exposures
+        |
+        v
+BigQuery curated datasets  - analytics marts, aggregated metrics
+        |
+        v
+Power BI - semantic layer via curated views and export tables
+```
 
 Notes
 
@@ -124,7 +141,7 @@ Governance and Security
 Cost Controls
 
 * Schedule heavy transformations in off-peak windows.
-* Use query byte limits and row-level sampling for exploratory analysis.
+* Use query byte limits and row level sampling for exploratory analysis.
 
 ---
 
@@ -140,6 +157,22 @@ Business translation - Revenue and Product Performance
 
 * Goal: identify revenue concentration, SKU risk, AOV drivers, and churn risk signals tied to revenue.
 * Actions: prioritize high-value SKU lifecycle, margin protection rules, targeted retention offers for high ARPC cohorts.
+
+## Screenshots
+
+Add Power BI tab screenshots in the `screenshots/` folder and reference them here. Use the following placeholders and captions. Replace file names with your exported `.png` or `.jpg` files.
+
+1. Revenue and Product Performance
+
+![Revenue and Product Performance](screenshots/Revnue_product_performance_tab1.pgn)
+
+2. Customer Insights and Segmentation
+
+![Customer Insights and Segmentation](screenshots/customer_insight_segmentation_tab2.png)
+
+3. Support and Customer Satisfaction
+
+![Support and Customer Satisfaction](screenshots/support_customer_satisfaction_tab3.png)
 
 ---
 
@@ -247,3 +280,4 @@ dbt test --models +marts
 * Introduce cost alerts for BigQuery query usage.
 
 ---
+
