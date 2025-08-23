@@ -15,6 +15,5 @@ clean-targets:
 
 models:
   crm_warehouse:
-    example:
-      +materialized: view
-    +schema: crm_warehouse_transformed  # all dbt-managed models go here
+    +schema: crm_warehouse_transformed   # all dbt-managed models go here
+    +materialized: view                  # default materialization for all models
