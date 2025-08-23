@@ -6,7 +6,7 @@
 
 with raw as (
     select *
-    from {{ source('crm_warehouse','dim_customer') }}
+    from {{ source('crm_warehouse','dim_customers') }}
 )
 
 select
@@ -19,6 +19,8 @@ select
     last_ticket_date,
     location,
     account_age_years,
-    income_bracket
+    income_bracket,
+    signup_date
 from raw
 where customer_id is not null
+

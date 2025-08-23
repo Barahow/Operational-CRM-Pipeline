@@ -6,7 +6,7 @@ sources:
     schema: crm_warehouse      # dataset where Airbyte loads raw tables
     description: "Raw tables loaded by Airbyte into crm_warehouse dataset"
     tables:
-      - name: dim_customer
+      - name: dim_customers
       - name: dim_product
       - name: dim_ticket
       - name: fact_sales
