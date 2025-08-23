@@ -28,9 +28,9 @@ Primary outcome: deployable architecture that supports incremental loads, schema
 
 ## Architecture Overview
 
-```
+
 ![Pipeline Architecture](screenshots/pipeline_architecture.png)
-```
+
 
 Notes
 
