@@ -29,22 +29,7 @@ Primary outcome: deployable architecture that supports incremental loads, schema
 ## Architecture Overview
 
 ```
-Data sources (Supabase, transactional feeds, marketing tools)
-        |
-        v
-Airbyte (ingest connectors, incremental replication)
-        |
-        v
-BigQuery raw dataset  - raw ingestion tables (append only)
-        |
-        v
-dbt - staging, transformation, marts, exposures
-        |
-        v
-BigQuery curated datasets  - analytics marts, aggregated metrics
-        |
-        v
-Power BI - semantic layer via curated views and export tables
+![Pipeline Architecture](screenshots/pipeline_architecture.png)
 ```
 
 Notes
@@ -164,7 +149,7 @@ Add Power BI tab screenshots in the `screenshots/` folder and reference them her
 
 1. Revenue and Product Performance
 
-![Revenue and Product Performance](screenshots/Revnue_product_performance_tab1.pgn)
+![Revenue and Product Performance](screenshots/Revnue_product_performance_tab1.png)
 
 2. Customer Insights and Segmentation
 
