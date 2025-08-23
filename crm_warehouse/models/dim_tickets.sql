@@ -1,6 +1,8 @@
--- models/dim_tickets.sql
+-- {{ config(materialized='table') }}
+
 with raw as (
-    select * from {{ source('crm_warehouse','dim_ticket') }}
+    select * 
+    from crm_warehouse.dim_ticket
 )
 
 select

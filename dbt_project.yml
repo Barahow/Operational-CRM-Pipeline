@@ -1,8 +1,10 @@
+config-version: 2
+
 name: 'crm_warehouse'
 version: '1.0.0'
 profile: 'crm_warehouse'
 
-model-paths: ["models"]
+model-paths: ["crm_warehouse/models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
@@ -15,5 +17,15 @@ clean-targets:
 
 models:
   crm_warehouse:
-    +schema: crm_warehouse_transformed   # all dbt-managed models go here
-    +materialized: view                  # default materialization for all models
+    +schema: crm_warehouse_transformed
+    +materialized: view
+    dim_customers:
+      +enabled: true
+    dim_products:
+      +enabled: true
+    dim_tickets:
+      +enabled: true
+    fact_sales:
+      +enabled: true
+    fact_support_ticket:
+      +enabled: true

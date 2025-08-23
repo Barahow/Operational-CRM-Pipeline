@@ -1,10 +1,14 @@
+with config as (
+    select 1 as dummy -- dummy select to anchor SQLFluff parsing
+)
+
 {{ config(
     materialized='table',
     schema='crm_warehouse',
     alias='dim_customers'
 ) }}
 
-with raw as (
+, raw as (
     select *
     from {{ source('crm_warehouse','dim_customers') }}
 )

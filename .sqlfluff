@@ -1,0 +1,9 @@
+[sqlfluff]
+dialect = bigquery
+templater = dbt
+# Optional: increase verbosity for debugging
+verbosity = 1
+
+[sqlfluff:rules]
+# Ignore parsing errors caused by top-level Jinja config
+ignore = PRS

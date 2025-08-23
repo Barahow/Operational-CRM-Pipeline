@@ -23,12 +23,14 @@ models:
     description: "Product dimension."
     columns:
       - name: product_id
+        description: "Primary key for product"
         tests:
           - not_null:
               tags: [critical]
           - unique:
               tags: [critical]
       - name: product_name
+        description: "Name of the product"
         tests:
           - not_null:
               tags: [critical]
@@ -37,22 +39,39 @@ models:
     description: "Support ticket dimension (cleaned)."
     columns:
       - name: ticket_id
+        description: "Primary key for ticket"
         tests:
           - not_null:
               tags: [critical]
           - unique:
               tags: [critical]
+      - name: ticket_type
+        description: "Type of support ticket"
+      - name: ticket_channel
+        description: "Channel of ticket submission"
+      - name: ticket_status
+        description: "Current status of ticket"
+      - name: ticket_priority
+        description: "Priority of ticket"
+      - name: first_response_time
+        description: "First response timestamp"
+      - name: time_to_resolution
+        description: "Resolution time in minutes"
+      - name: customer_id
+        description: "Customer reference"
 
-  - name: fact_sales_transformed
-    description: "Sales transactions (transformed)."
+  - name: fact_sales
+    description: "Sales transactions (raw/transformed)."
     columns:
       - name: sale_id
+        description: "Primary key for sales record"
         tests:
           - not_null:
               tags: [critical]
           - unique:
               tags: [critical]
       - name: customer_id
+        description: "Customer reference"
         tests:
           - not_null:
               tags: [critical]
@@ -61,6 +80,7 @@ models:
               field: customer_id
               tags: [critical]
       - name: product_id
+        description: "Product reference"
         tests:
           - not_null:
               tags: [critical]
@@ -69,16 +89,40 @@ models:
               field: product_id
               tags: [critical]
 
-  - name: fact_support_ticket_transformed
-    description: "Support tickets fact (transformed)."
+  - name: fact_support_ticket
+    description: "Support tickets fact table."
     columns:
       - name: ticket_id
+        description: "Primary key for ticket"
         tests:
           - not_null:
               tags: [critical]
           - unique:
               tags: [critical]
       - name: customer_email
+        description: "Customer email reference"
         tests:
           - not_null:
               tags: [critical]
+      - name: ticket_subject
+        description: "Ticket subject"
+      - name: ticket_description
+        description: "Detailed ticket description"
+      - name: ticket_status
+        description: "Status of ticket"
+      - name: resolution
+        description: "Resolution text"
+      - name: ticket_priority
+        description: "Priority of ticket"
+      - name: ticket_channel
+        description: "Channel of ticket"
+      - name: first_response_time
+        description: "First response timestamp"
+      - name: ticket_created
+        description: "Ticket creation timestamp"
+      - name: frt_minutes
+        description: "First response time in minutes"
+      - name: ttr_minutes
+        description: "Time to resolution in minutes"
+      - name: customer_satisfaction
+        description: "Customer satisfaction score"
