@@ -8,20 +8,22 @@
 ) }}
 
 with raw as (
-  select * from {{ source('crm_warehouse','fact_sales') }}
+    select * from {{ source('crm_warehouse','fact_sales') }}
 )
 
 select
-  sale_id,
-  customer_id,
-  product_id,
-  CAST(purchase_date AS DATE) as purchase_date,
-  quantity,
-  unit_price,
-  total_amount,
-  payment_method
+    sale_id,
+    customer_id,
+    product_id,
+    quantity,
+    unit_price,
+    total_amount,
+    payment_method,
+    CAST(purchase_date as DATE) as purchase_date
 from raw
 
 {% if is_incremental() %}
-  where CAST(purchase_date AS DATE) > (select coalesce(max(purchase_date), '1970-01-01') from {{ this }})
+    where
+        CAST(purchase_date as DATE)
+        > (select COALESCE(MAX(purchase_date), '1970-01-01') from {{ this }})
 {% endif %}

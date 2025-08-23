@@ -28,8 +28,8 @@ select *
 from raw
 
 {% if is_incremental() %}
-  where ticket_created > (
-    select coalesce(max(ticket_created), timestamp('1970-01-01')) from {{ this }}
-  )
+    where ticket_created > (
+        select coalesce(max(ticket_created), timestamp('1970-01-01'))
+        from {{ this }}
+    )
 {% endif %}
-

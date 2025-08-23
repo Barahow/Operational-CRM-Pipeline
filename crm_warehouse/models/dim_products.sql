@@ -5,7 +5,7 @@
 ) }}
 
 with raw as (
-    select * 
+    select *
     from {{ source('crm_warehouse','dim_product') }}
 )
 

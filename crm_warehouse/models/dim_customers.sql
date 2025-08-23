@@ -23,4 +23,3 @@ select
     signup_date
 from raw
 where customer_id is not null
-
