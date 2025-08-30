@@ -1,4 +1,4 @@
-# CRM-Warehouse-Pipeline
+# Operational CRM Pipeline
 
 Scalable data warehouse pipeline for Power BI dashboards. Primary focus: pipeline architecture, data quality, deployment, and operational monitoring. Secondary: business translation and key insights derived from the Power BI tabs.
 
